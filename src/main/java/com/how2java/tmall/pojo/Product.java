@@ -38,7 +38,7 @@ public class Product {
     private int stock;
     private Date createDate;
     @Transient//该对象不会被持久化
-    private ProductImage firstProductImage;
+    private ProductImage firstProductImage;//显示在后台界面的图片
 
     public int getId() {
         return id;
