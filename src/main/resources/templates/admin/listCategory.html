@@ -22,12 +22,11 @@
                 this.list(0);
             },
             methods: {
-
                 list:function(start){
                     var url =  this.uri+ "?start="+start;
                     axios.get(url).then(function(response) {
                         vue.pagination = response.data;
-                        vue.beans = response.data.content   ;
+                        vue.beans = response.data.content	;
                     });
                 },
                 add: function () {
@@ -43,19 +42,20 @@
                     formData.append("name", this.bean.name);
                     axios.post(url,formData).then(function(response){
                         vue.list(0);
-                        vue.bean = { id: 0, name: ''};
+                        vue.bean = { id: 0, name: '', hp: '0'};
                         $("#categoryPic").val('');
                         vue.file = null;
                     });
                 },
-                deleteBean:function (id) {
+                deleteBean: function (id) {
                     if(!checkDeleteLink())
                         return;
                     var url = this.uri+"/"+id;
-                    axios.delete(url).then(function (response) {
+                    axios.delete(url).then(function(response){
                         if(0!=response.data.length){
                             alert(response.data);
-                        }else{//这是正常返回（空字符串）
+                        }
+                        else{
                             vue.list(0);
                         }
                     });

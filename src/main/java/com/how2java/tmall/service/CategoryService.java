@@ -2,6 +2,7 @@ package com.how2java.tmall.service;
 
 import com.how2java.tmall.dao.CategoryDAO;
 import com.how2java.tmall.pojo.Category;
+import com.how2java.tmall.pojo.Product;
 import com.how2java.tmall.util.Page4Navigator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,4 +47,28 @@ public class CategoryService {
     public void update(Category bean){
         categoryDAO.save(bean);
     }
+
+    //前台功能修改,去掉产品中的分类避免重复调用
+    public void removeCategoryFromProduct(Category category){
+        List<Product> products = category.getProducts();
+        if(null!=products){
+            for(Product product:products){
+                product.setCategory(null);
+            }
+        }
+        List<List<Product>> productsByRow = category.getProductsByRow();
+        if(null!=productsByRow){
+            for(List<Product> ps:productsByRow){
+                for(Product p:ps){
+                    p.setCategory(null);
+                }
+            }
+        }
+    }
+    public void removeCategoryFromProduct(List<Category> categories){
+        for(Category category:categories){
+            removeCategoryFromProduct(category);
+        }
+    }
+
 }

@@ -25,7 +25,7 @@
                     var url =  this.uri+ "?start="+start;
                     axios.get(url).then(function(response) {
                         vue.pagination = response.data;
-                        vue.beans = response.data.content   ;
+                        vue.beans = response.data.content	;
                     });
                 },
                 jump: function(page){
@@ -65,6 +65,7 @@
     </div>
 
     <div th:replace="include/admin/adminPage::html" ></div>
+
 
 </div>
 
