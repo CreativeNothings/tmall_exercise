@@ -19,9 +19,9 @@
 **src/main/resources**  
 - /static (里面存放css、img、js等静态文件)
 - /templates
-- /admin
-- /fore
-- /include
+- /admin(后台公共前端页面)
+- /fore(前台公共页面)
+- /include(一般是前台内嵌页面)
 - application.properties(配置文件)
 
 项目文件目录参见下图  
