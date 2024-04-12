@@ -16,9 +16,8 @@
 - web（控制层）    
 - Application.java（启动类)
 
-**src/main/resources**
-/static
-- 里面存放css、img、js等静态文件
+**src/main/resources**  
+- /static (里面存放css、img、js等静态文件)
 /templates
 - /admin
 - /fore
