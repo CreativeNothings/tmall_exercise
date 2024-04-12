@@ -1,3 +1,9 @@
+/**
+* 模仿天猫整站 springboot 教程 为 how2j.cn 版权所有
+* 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关
+* 供购买者学习，请勿私自传播，否则自行承担相关法律责任
+*/	
+
 package com.how2java.tmall.web;
 
 import com.how2java.tmall.pojo.Category;
@@ -13,66 +19,67 @@ import javax.servlet.http.HttpServletRequest;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
+ 
 @RestController
 public class CategoryController {
-    //专门用来传数据
-    @Autowired CategoryService categoryService;
-//    @GetMapping("/categories")
-//    public List<Category> list() throws Exception{
-//        return categoryService.list();
-//    }
-    //分页调用新的Service方法，传入参数
+	@Autowired CategoryService categoryService;
 
-    @GetMapping("/categories")
-    public Page4Navigator<Category> list(@RequestParam(value = "start",defaultValue = "0")int start ,@RequestParam(value = "size",defaultValue = "5")int size) throws Exception{
-        start = start<0 ? 0:start;
-        Page4Navigator<Category> page = categoryService.list(start,size,5);
-        return page;
-    }
-    //新增增加功能的add方法
-    //根据restful规范添加postMapping
-    @PostMapping("/categories")
-    public Object add(Category bean, MultipartFile image, HttpServletRequest request) throws Exception {
-        categoryService.add(bean);
-        saveOrUpdateImageFile(bean, image, request);
-        return bean;
-    }
-    public void saveOrUpdateImageFile(Category bean, MultipartFile image, HttpServletRequest request)
-            throws IOException {
-        File imageFolder= new File(request.getServletContext().getRealPath("img/category"));
-        File file = new File(imageFolder,bean.getId()+".jpg");
-        if(!file.getParentFile().exists())
-            file.getParentFile().mkdirs();
-        image.transferTo(file);
-        BufferedImage img = ImageUtil.change2jpg(file);
-        ImageIO.write(img, "jpg", file);
-    }
+	@GetMapping("/categories")
+	public Page4Navigator<Category> list(@RequestParam(value = "start", defaultValue = "0") int start, @RequestParam(value = "size", defaultValue = "5") int size) throws Exception {
+		start = start<0?0:start;
+		Page4Navigator<Category> page =categoryService.list(start, size, 5);  //5表示导航分页最多有5个，像 [1,2,3,4,5] 这样
+		return page;
+	}
 
-    @DeleteMapping("/categories/{id}")
-    public String delete(@PathVariable("id")int id,HttpServletRequest request)throws Exception{
-        categoryService.delete(id);
-        File imageFolder = new File(request.getServletContext().getRealPath("img/category"));
-        File file = new File(imageFolder,id+".jpg");
-        file.delete();
-        return null;
-    }
-    @GetMapping("/categories/{id}")
-    public Category get(@PathVariable("id") int id) throws Exception {
-        Category bean=categoryService.get(id);
-        return bean;
-    }
-    //按RESTful风格，修改使用put，添加使用post
-    @PutMapping("/categories/{id}")
-    public Object update(Category bean,MultipartFile image,HttpServletRequest request)throws Exception{
-        String name = request.getParameter("name");
-        bean.setName(name);
-        categoryService.update(bean);
+	@PostMapping("/categories")
+	public Object add(Category bean, MultipartFile image, HttpServletRequest request) throws Exception {
+		categoryService.add(bean);
+		saveOrUpdateImageFile(bean, image, request);
+		return bean;
+	}
+	public void saveOrUpdateImageFile(Category bean, MultipartFile image, HttpServletRequest request)
+			throws IOException {
+		File imageFolder= new File(request.getServletContext().getRealPath("img/category"));
+		File file = new File(imageFolder,bean.getId()+".jpg");
+		if(!file.getParentFile().exists())
+			file.getParentFile().mkdirs();
+		image.transferTo(file);
+		BufferedImage img = ImageUtil.change2jpg(file);
+		ImageIO.write(img, "jpg", file);
+	}
 
-        if(image!=null){
-            saveOrUpdateImageFile(bean,image,request);
-        }
-        return bean;
-    }
+	@DeleteMapping("/categories/{id}")
+	public String delete(@PathVariable("id") int id, HttpServletRequest request)  throws Exception {
+		categoryService.delete(id);
+		File  imageFolder= new File(request.getServletContext().getRealPath("img/category"));
+		File file = new File(imageFolder,id+".jpg");
+		file.delete();
+		return null;
+	}
+
+	@GetMapping("/categories/{id}")
+	public Category get(@PathVariable("id") int id) throws Exception {
+		Category bean=categoryService.get(id);
+		return bean;
+	}
+
+	@PutMapping("/categories/{id}")
+	public Object update(Category bean, MultipartFile image,HttpServletRequest request) throws Exception {
+		String name = request.getParameter("name");
+		bean.setName(name);
+		categoryService.update(bean);
+
+		if(image!=null) {
+			saveOrUpdateImageFile(bean, image, request);
+		}
+		return bean;
+	}
 
 }
+
+
+/**
+* 模仿天猫整站 springboot 教程 为 how2j.cn 版权所有
+* 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关
+* 供购买者学习，请勿私自传播，否则自行承担相关法律责任
+*/	

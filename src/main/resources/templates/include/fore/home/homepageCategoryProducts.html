@@ -1,3 +1,4 @@
+
 <div th:fragment="html">
     <div class="homepageCategoryProducts">
         <div class="eachHomepageCategoryProducts" v-for="c in categories">
@@ -9,8 +10,8 @@
                     <img width="100px" :src="'img/productSingle_middle/'+p.firstProductImage.id+'.jpg'">
                 </a>
 
-                <a class="productItemDescLink" href="'product?pid='+p.id">
-									<span class="productItemDesc">[热销]
+                <a class="productItemDescLink" :href="'product?pid='+p.id">
+									<span class="productItemDesc">[热销111]
 									{{p.name | subStringFilter(0,20)}}
 									</span>
                 </a>

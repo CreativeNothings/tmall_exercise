@@ -1,5 +1,11 @@
-package com.how2java.tmall.util;
+/**
+* 模仿天猫整站 springboot 教程 为 how2j.cn 版权所有
+* 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关
+* 供购买者学习，请勿私自传播，否则自行承担相关法律责任
+*/	
 
+package com.how2java.tmall.util;
+  
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
@@ -15,10 +21,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
+  
 public class ImageUtil {
-    //1. change2jpg确保图片文件的二进制格式是jpg。
-    //2. 后两种resizeImage用于改变图片大小，在上传产品图片的时候会用到
+  
     public static BufferedImage change2jpg(File f) {
         try {
             Image i = Toolkit.getDefaultToolkit().createImage(f.getAbsolutePath());
@@ -32,12 +37,11 @@ public class ImageUtil {
             BufferedImage img = new BufferedImage(RGB_OPAQUE, raster, false, null);
             return img;
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return null;
         }
     }
-
+  
     public static void resizeImage(File srcFile, int width,int height, File destFile) {
         try {
             if(!destFile.getParentFile().exists())
@@ -46,23 +50,28 @@ public class ImageUtil {
             i = resizeImage(i, width, height);
             ImageIO.write((RenderedImage) i, "jpg", destFile);
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
-
+      
     public static Image resizeImage(Image srcImage, int width, int height) {
         try {
-
+  
             BufferedImage buffImg = null;
             buffImg = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
             buffImg.getGraphics().drawImage(srcImage.getScaledInstance(width, height, Image.SCALE_SMOOTH), 0, 0, null);
-
+  
             return buffImg;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         return null;
     }
+  
 }
+
+/**
+* 模仿天猫整站 springboot 教程 为 how2j.cn 版权所有
+* 本教程仅用于学习使用，切勿用于非法用途，由此引起一切后果与本站无关
+* 供购买者学习，请勿私自传播，否则自行承担相关法律责任
+*/	
