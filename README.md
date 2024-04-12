@@ -29,5 +29,5 @@
 前台图片展示  
 ![fore_page](https://github.com/CreativeNothings/tmall_exercise/blob/main/admin.png "前台图片")  
 后台图片展示  
-![admin_page]()
+![admin_page](https://github.com/CreativeNothings/tmall_exercise/blob/main/fore.jpeg "后台图片")
 
