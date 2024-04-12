@@ -18,9 +18,12 @@
 
 **src/main/resources**  
 - /static (里面存放css、img、js等静态文件)
-/templates
+- /templates
 - /admin
 - /fore
 - /include
 - application.properties(配置文件)
+
+项目文件目录参见下图  
+![pro_file_structure](https://github.com/CreativeNothings/tmall_exercise/blob/main/project_file_structure.png "项目文件目录")
 
