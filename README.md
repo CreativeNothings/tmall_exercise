@@ -1,6 +1,6 @@
 # tmall_exercise
 这是仿天猫网站练习
- 项目结构
+## 项目结构  
 src/main/java/com.how2java.tmall  
 comparator（商品比较器）  
 config（配置）  
