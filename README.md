@@ -27,7 +27,7 @@
 项目文件目录参见下图  
 ![pro_file_structure](https://github.com/CreativeNothings/tmall_exercise/blob/main/project_file_structure.png "项目文件目录")  
 前台图片展示  
-![fore_page]()  
+![fore_page](https://github.com/CreativeNothings/tmall_exercise/blob/main/admin.png "前台图片")  
 后台图片展示  
 ![admin_page]()
 
